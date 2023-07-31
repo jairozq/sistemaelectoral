@@ -18,7 +18,7 @@ class _Bnavigator extends State<Bnavigator> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.purple,
+        selectedItemColor: Colors.grey,
         selectedLabelStyle: const TextStyle(fontFamily: "alksemb"),
         selectedFontSize: MediaQuery.of(context).size.width * 0.04,
         unselectedLabelStyle: const TextStyle(fontFamily: "alksemb"),
@@ -36,19 +36,19 @@ class _Bnavigator extends State<Bnavigator> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Inicio",
+            label: "Sedes",
           ),
           /*BottomNavigationBarItem(
             icon: Icon(Icons.assignment_add),
             label: "Reservar",
           ),*/
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment_rounded),
-            label: "Reservas",
+            icon: Icon(Icons.account_box_rounded),
+            label: "Testigos",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_box_rounded),
-            label: "Perfil",
+            icon: Icon(Icons.assignment_rounded),
+            label: "Registros",
           ),
         ]);
   }

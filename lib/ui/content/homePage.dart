@@ -1,37 +1,29 @@
-import 'package:sistemaelectoral/ui/content/add_testigo.dart';
 import 'package:sistemaelectoral/ui/content/bottom_nav.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sistemaelectoral/ui/content/list_sedes.dart';
 import 'package:sistemaelectoral/ui/content/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class HomePageH extends StatefulWidget {
-  const HomePageH({
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
   });
 
   @override
-  State<HomePageH> createState() => _HomePageHState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 String dato = '';
 int index = idex;
 
-class _HomePageHState extends State<HomePageH> {
+class _HomePageState extends State<HomePage> {
   Bnavigator? myBNB;
-
-  cargarDatos() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    dato = pref.getString("idG").toString();
-  }
 
   @override
   void initState() {
-    cargarDatos();
     myBNB = Bnavigator(
       currentIndex: (i) {
         setState(() {
-          index = i;
+          index = 1;
         });
       },
     );
@@ -46,24 +38,24 @@ class _HomePageHState extends State<HomePageH> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text('FastHotel',
+        title: Text('Sitema Electoral',
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'alkbold',
                 fontSize: MediaQuery.of(context).size.height * 0.035)),
-        actions: [
+        /*actions: [
           Container(
             width: MediaQuery.of(context).size.width * 0.156,
             child: OutlinedButton.icon(
                 onPressed: () {
-                  Get.toNamed("/login");
+                  Get.toNamed("/home");
                 },
                 icon: const Icon(Icons.close_rounded, color: Colors.white),
                 label: const Text('',
                     style:
                         TextStyle(color: Colors.black, fontFamily: 'alkbold'))),
           )
-        ],
+        ],*/
       ),
     );
   }

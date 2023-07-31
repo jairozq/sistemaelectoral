@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'content/add_testigo.dart';
 import 'package:get/get.dart';
+import 'package:sistemaelectoral/ui/content/homepage.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,9 +11,9 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: '',
       theme: ThemeData(primarySwatch: Colors.grey),
-      initialRoute: '/agregarTestigos',
+      initialRoute: '/home',
       routes: {
-        "/agregarTestigos": (context) => const AddTestigo(),
+        "/home": (context) => const HomePage(),
       },
     );
   }

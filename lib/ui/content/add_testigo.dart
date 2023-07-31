@@ -7,8 +7,6 @@ class AddTestigo extends StatefulWidget {
   State<AddTestigo> createState() => _AddTestigoState();
 }
 
-int idex = 0;
-
 class _AddTestigoState extends State<AddTestigo> {
   @override
   Widget build(BuildContext context) {
@@ -18,8 +16,12 @@ class _AddTestigoState extends State<AddTestigo> {
     TextEditingController sede = TextEditingController();
     TextEditingController mesa = TextEditingController();
     return Container(
+      alignment: Alignment.center,
       child: Scaffold(
-        body: Container(),
+        body: Container(
+          padding: const EdgeInsets.all(20),
+          child: const Text("Hola"),
+        ),
       ),
     );
   }
