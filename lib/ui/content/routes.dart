@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:sistemaelectoral/ui/content/add_testigo.dart';
+import 'package:sistemaelectoral/ui/content/add_registros.dart';
+import 'package:sistemaelectoral/ui/content/list_testigos.dart';
 import 'package:sistemaelectoral/ui/content/list_sedes.dart';
+import 'package:flutter/material.dart';
 
 class Routes extends StatelessWidget {
   final int index;
@@ -9,8 +10,9 @@ class Routes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> myList = [
-      const listSedes(),
-      const AddTestigo(),
+      const ListSedes(),
+      const ListTestigos(),
+      const AddResgitros(),
     ];
     return myList[index];
   }

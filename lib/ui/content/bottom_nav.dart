@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:sistemaelectoral/ui/content/add_testigo.dart';
+import 'package:sistemaelectoral/ui/content/list_sedes.dart';
 import 'package:sistemaelectoral/ui/content/homepage.dart';
+import 'package:flutter/material.dart';
 //import 'package:get/get.dart';
 
 class Bnavigator extends StatefulWidget {
@@ -19,9 +19,9 @@ class _Bnavigator extends State<Bnavigator> {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.grey,
-        selectedLabelStyle: const TextStyle(fontFamily: "alksemb"),
+        // selectedLabelStyle: const TextStyle(fontFamily: "alksemb"),
         selectedFontSize: MediaQuery.of(context).size.width * 0.04,
-        unselectedLabelStyle: const TextStyle(fontFamily: "alksemb"),
+        // unselectedLabelStyle: const TextStyle(fontFamily: "alksemb"),
         unselectedFontSize: MediaQuery.of(context).size.width * 0.03,
         currentIndex: idex,
         onTap: (i) {
@@ -29,19 +29,12 @@ class _Bnavigator extends State<Bnavigator> {
             index = i;
             widget.currentIndex(index);
           });
-          /*if (i == 2) {
-            controlh.listHotels().then((value) => Get.toNamed("/homePageH"));
-          }*/
         },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Sedes",
           ),
-          /*BottomNavigationBarItem(
-            icon: Icon(Icons.assignment_add),
-            label: "Reservar",
-          ),*/
           BottomNavigationBarItem(
             icon: Icon(Icons.account_box_rounded),
             label: "Testigos",

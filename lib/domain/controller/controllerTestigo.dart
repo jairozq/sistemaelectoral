@@ -9,5 +9,5 @@ class ControlTestigo extends GetxController {
     _listarTestigo.value = await PeticionesTestigo.consultarTestigos(cedula);
   }
 
-  List<Testigo>? get listaAccessLogin => _listarTestigo.value;
+  List<Testigo>? get listaTestigo => _listarTestigo.value;
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AddTestigo extends StatefulWidget {
-  const AddTestigo({super.key});
+class AddTestigos extends StatefulWidget {
+  const AddTestigos({super.key});
 
   @override
-  State<AddTestigo> createState() => _AddTestigoState();
+  State<AddTestigos> createState() => _AddTestigosState();
 }
 
-class _AddTestigoState extends State<AddTestigo> {
+class _AddTestigosState extends State<AddTestigos> {
   @override
   Widget build(BuildContext context) {
     TextEditingController nombre = TextEditingController();
@@ -15,13 +15,10 @@ class _AddTestigoState extends State<AddTestigo> {
     TextEditingController cedula = TextEditingController();
     TextEditingController sede = TextEditingController();
     TextEditingController mesa = TextEditingController();
-    return Container(
-      alignment: Alignment.center,
-      child: Scaffold(
-        body: Container(
-          padding: const EdgeInsets.all(20),
-          child: const Text("Hola"),
-        ),
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: const Text("Hola"),
       ),
     );
   }

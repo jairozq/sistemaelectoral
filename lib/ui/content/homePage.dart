@@ -4,9 +4,7 @@ import 'package:sistemaelectoral/ui/content/routes.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({
-    super.key,
-  });
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     myBNB = Bnavigator(
       currentIndex: (i) {
         setState(() {
-          index = 1;
+          index = i;
         });
       },
     );
@@ -41,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Sitema Electoral',
             style: TextStyle(
                 color: Colors.white,
-                fontFamily: 'alkbold',
+                // fontFamily: 'alkbold',
                 fontSize: MediaQuery.of(context).size.height * 0.035)),
         /*actions: [
           Container(

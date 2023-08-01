@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 
-class listSedes extends StatefulWidget {
-  const listSedes({super.key});
+class ListSedes extends StatefulWidget {
+  const ListSedes({super.key});
 
   @override
-  State<listSedes> createState() => _listSedesState();
+  State<ListSedes> createState() => _ListSedesState();
 }
 
 int idex = 0;
 
-class _listSedesState extends State<listSedes> {
+class _ListSedesState extends State<ListSedes> {
+  void actualizar() {
+    setState(() {
+      idex = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    actualizar();
+    return Container(
+      alignment: Alignment.center,
+      child: const Text("Sedes"),
+    );
   }
 }
