@@ -10,6 +10,11 @@ class AddSedes extends StatefulWidget {
 class _AddSedesState extends State<AddSedes> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        body: Container(),
+      ),
+    );
   }
 }

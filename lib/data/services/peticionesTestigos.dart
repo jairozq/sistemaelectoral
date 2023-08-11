@@ -6,8 +6,19 @@ import 'dart:convert';
 
 class PeticionesTestigo {
   static Future<List<Testigo>> consultarTestigos(String cedula) async {
-    var url = Uri.parse("");
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/add_testigo.php");
     final response = await http.post(url, body: {'cedula': cedula});
+
+    return compute(convertirAlistaRespuesta, response.body);
+  }
+
+  static Future<List<Testigo>> validarTestigos(
+      String user, String contrasena) async {
+    var url =
+        Uri.parse("https://sistemaelectoral.codersdevs.com.co/php/login.php");
+    final response =
+        await http.post(url, body: {'user': user, 'contrasena': contrasena});
 
     return compute(convertirAlistaRespuesta, response.body);
   }

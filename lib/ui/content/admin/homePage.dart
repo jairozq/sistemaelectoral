@@ -1,6 +1,7 @@
-import 'package:sistemaelectoral/ui/content/bottom_nav.dart';
-import 'package:sistemaelectoral/ui/content/list_sedes.dart';
-import 'package:sistemaelectoral/ui/content/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sistemaelectoral/ui/content/admin/bottom_nav.dart';
+import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
+import 'package:sistemaelectoral/ui/content/admin/routes.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,8 +17,14 @@ int index = idex;
 class _HomePageState extends State<HomePage> {
   Bnavigator? myBNB;
 
+  cargarDatos() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    dato = pref.getString("idG").toString();
+  }
+
   @override
   void initState() {
+    cargarDatos();
     myBNB = Bnavigator(
       currentIndex: (i) {
         setState(() {
@@ -39,9 +46,9 @@ class _HomePageState extends State<HomePage> {
         title: Text('Sitema Electoral',
             style: TextStyle(
                 color: Colors.white,
-                // fontFamily: 'alkbold',
+                fontFamily: 'alkbold',
                 fontSize: MediaQuery.of(context).size.height * 0.035)),
-        /*actions: [
+        /*actions: [ ****eliminar el id****
           Container(
             width: MediaQuery.of(context).size.width * 0.156,
             child: OutlinedButton.icon(

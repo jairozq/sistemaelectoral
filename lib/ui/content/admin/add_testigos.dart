@@ -10,11 +10,9 @@ class AddTestigos extends StatefulWidget {
 class _AddTestigosState extends State<AddTestigos> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController nombre = TextEditingController();
-    TextEditingController apellido = TextEditingController();
+    TextEditingController user = TextEditingController();
+    TextEditingController contrasena = TextEditingController();
     TextEditingController cedula = TextEditingController();
-    TextEditingController sede = TextEditingController();
-    TextEditingController mesa = TextEditingController();
     return Scaffold(
       body: Container(
         alignment: Alignment.center,

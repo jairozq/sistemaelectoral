@@ -1,6 +1,8 @@
+import 'package:sistemaelectoral/ui/content/admin/homePage.dart';
+import 'package:sistemaelectoral/ui/content/testigo/homePage.dart';
+import 'package:sistemaelectoral/ui/auth/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sistemaelectoral/ui/content/homepage.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,9 +13,11 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: '',
       theme: ThemeData(primarySwatch: Colors.grey),
-      initialRoute: '/home',
+      initialRoute: '/login',
       routes: {
-        "/home": (context) => const HomePage(),
+        "/login": (context) => const Login(),
+        "/homePageAdmin": (context) => const HomePage(),
+        "/homePageTestigo": (context) => const HomePageT(),
       },
     );
   }

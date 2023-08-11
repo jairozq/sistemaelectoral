@@ -1,25 +1,25 @@
 class Testigo {
-  late String nombre;
-  late String apellido;
+  late String user;
+  late String contrasena;
   late String cedula;
+  late String tipocuenta;
   late String sede;
-  late String mesa;
 
   Testigo({
-    required this.nombre,
-    required this.apellido,
+    required this.user,
+    required this.contrasena,
     required this.cedula,
+    required this.tipocuenta,
     required this.sede,
-    required this.mesa,
   });
 
   factory Testigo.desdeJson(Map<String, dynamic> jsonMap) {
     return Testigo(
-      nombre: jsonMap['nombre'],
-      apellido: jsonMap['apellido'],
+      user: jsonMap['user'],
+      contrasena: jsonMap['contrasena'],
       cedula: jsonMap['cedula'],
+      tipocuenta: jsonMap['tipocuenta'],
       sede: jsonMap['sede'],
-      mesa: jsonMap['mesa'],
     );
   }
 }

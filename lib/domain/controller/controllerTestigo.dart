@@ -1,13 +1,21 @@
 import 'package:sistemaelectoral/data/services/peticionesTestigos.dart';
 import 'package:sistemaelectoral/domain/models/testigo.dart';
+import 'package:sistemaelectoral/domain/models/utiles.dart';
 import 'package:get/get.dart';
 
 class ControlTestigo extends GetxController {
   final Rxn<List<Testigo>> _listarTestigo = Rxn<List<Testigo>>([]);
+  final Rxn<List<Mensajes>> _mensajes = Rxn<List<Mensajes>>([]);
 
   Future<void> consultarTestigo(String cedula) async {
     _listarTestigo.value = await PeticionesTestigo.consultarTestigos(cedula);
   }
 
+  Future<void> validarTestigo(String user, String contrasena) async {
+    _listarTestigo.value =
+        await PeticionesTestigo.validarTestigos(user, contrasena);
+  }
+
   List<Testigo>? get listaTestigo => _listarTestigo.value;
+  List<Mensajes>? get mensaje => _mensajes.value;
 }

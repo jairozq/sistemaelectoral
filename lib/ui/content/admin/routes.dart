@@ -1,6 +1,6 @@
-import 'package:sistemaelectoral/ui/content/add_registros.dart';
-import 'package:sistemaelectoral/ui/content/list_testigos.dart';
-import 'package:sistemaelectoral/ui/content/list_sedes.dart';
+import 'package:sistemaelectoral/ui/content/admin/add_registros.dart';
+import 'package:sistemaelectoral/ui/content/admin/list_e14.dart';
+import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
 import 'package:flutter/material.dart';
 
 class Routes extends StatelessWidget {
@@ -11,7 +11,7 @@ class Routes extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> myList = [
       const ListSedes(),
-      const ListTestigos(),
+      const ListE14(),
       const AddResgitros(),
     ];
     return myList[index];

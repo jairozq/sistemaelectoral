@@ -1,5 +1,5 @@
-import 'package:sistemaelectoral/ui/content/list_sedes.dart';
-import 'package:sistemaelectoral/ui/content/homepage.dart';
+import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
+import 'package:sistemaelectoral/ui/content/admin/homePage.dart';
 import 'package:flutter/material.dart';
 //import 'package:get/get.dart';
 
@@ -33,11 +33,11 @@ class _Bnavigator extends State<Bnavigator> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Sedes",
+            label: "Puestos",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_box_rounded),
-            label: "Testigos",
+            icon: Icon(Icons.table_restaurant_rounded),
+            label: "Mesas",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment_rounded),

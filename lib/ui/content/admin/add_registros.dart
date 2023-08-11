@@ -1,6 +1,8 @@
-import 'package:sistemaelectoral/domain/controller/controllerUser.dart';
-import 'package:sistemaelectoral/ui/content/add_sedes.dart';
-import 'package:sistemaelectoral/ui/content/list_sedes.dart';
+import 'package:sistemaelectoral/domain/controller/controllerMesa.dart';
+import 'package:sistemaelectoral/domain/controller/controllerSede.dart';
+import 'package:sistemaelectoral/domain/controller/controllerTestigo.dart';
+import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
+import 'package:sistemaelectoral/ui/content/admin/add_sedes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +22,9 @@ class _AddResgitrosState extends State<AddResgitros> {
 
   @override
   Widget build(BuildContext context) {
-    // ControlUser controlu = Get.put(ControlUser());
+    ControlMesa controlm = Get.put(ControlMesa());
+    ControlSede controls = Get.put(ControlSede());
+    ControlTestigo controlt = Get.put(ControlTestigo());
     actualizar();
 
     return Center(
@@ -29,17 +33,12 @@ class _AddResgitrosState extends State<AddResgitros> {
         children: [
           OutlinedButton(
             onPressed: () {
-              // cargarDatos();
-              // String cedula = '123';
-              // controlu.consultarUser(cedula).then(
-              //       (value) =>
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (BuildContext context) => AddSedes(),
                 ),
               );
-              // );
             },
             child: Text(
               "Registrar Sede",
@@ -53,17 +52,14 @@ class _AddResgitrosState extends State<AddResgitros> {
           ),
           OutlinedButton(
             onPressed: () {
-              // cargarDatos();
-              // String cedula = '123';
-              // controlu.consultarUser(cedula).then(
-              //       (value) =>
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => AddSedes(),
-                ),
-              );
-              // );
+              controls.listarSedeGeneral().then(
+                    (value) => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => AddSedes(),
+                      ),
+                    ),
+                  );
             },
             child: Text(
               "Registrar Mesa",
