@@ -4,6 +4,7 @@ class Testigo {
   late String cedula;
   late String tipocuenta;
   late String sede;
+  late String estado;
 
   Testigo({
     required this.user,
@@ -11,6 +12,7 @@ class Testigo {
     required this.cedula,
     required this.tipocuenta,
     required this.sede,
+    required this.estado,
   });
 
   factory Testigo.desdeJson(Map<String, dynamic> jsonMap) {
@@ -20,6 +22,7 @@ class Testigo {
       cedula: jsonMap['cedula'],
       tipocuenta: jsonMap['tipocuenta'],
       sede: jsonMap['sede'],
+      estado: jsonMap['estado'],
     );
   }
 }

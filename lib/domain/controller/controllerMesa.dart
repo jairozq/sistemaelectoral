@@ -21,8 +21,16 @@ class ControlMesa extends GetxController {
     _listarMesa.value = await PeticionesMesa.filtraMesas(sede);
   }
 
-  Future<void> listraMesa() async {
+  /*Future<void> listraMesa() async {
     _listarMesa.value = await PeticionesMesa.listaMesa();
+  }*/
+
+  Future<void> listraMesaEC() async {
+    _listarMesa.value = await PeticionesMesa.listaMesaEC();
+  }
+
+  Future<void> listraMesaEP() async {
+    _listarMesa.value = await PeticionesMesa.listaMesaEP();
   }
 
   List<Mesa>? get listaMesa => _listarMesa.value;

@@ -15,12 +15,9 @@ class PeticionesMesa {
   }
 
   static Future<List<Mesa>> filtraMesas(String sede) async {
-    print("peticion sede: $sede");
     var url = Uri.parse(
         "https://sistemaelectoral.codersdevs.com.co/php/filtrar_mesas.php");
     final response = await http.post(url, body: {'sede': sede});
-    print(response.statusCode);
-    print(response.body);
 
     return compute(convertirAlistaRespuesta, response.body);
   }
@@ -33,9 +30,25 @@ class PeticionesMesa {
     return compute(convertirAlistaRespuesta, response.body);
   }
 
-  static Future<List<Mesa>> listaMesa() async {
+  /*static Future<List<Mesa>> listaMesa() async {
     var url = Uri.parse("");
     final response = await http.get(url);
+
+    return compute(convertirAlistaRespuesta, response.body);
+  }*/
+
+  static Future<List<Mesa>> listaMesaEC() async {
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/filtrar_mesas_estado.php");
+    final response = await http.post(url, body: {'estadoe14': 'CREADO'});
+
+    return compute(convertirAlistaRespuesta, response.body);
+  }
+
+  static Future<List<Mesa>> listaMesaEP() async {
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/filtrar_mesas_estado.php");
+    final response = await http.post(url, body: {'estadoe14': 'PENDIENTE'});
 
     return compute(convertirAlistaRespuesta, response.body);
   }

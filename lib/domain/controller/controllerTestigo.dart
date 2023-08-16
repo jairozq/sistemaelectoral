@@ -13,8 +13,12 @@ class ControlTestigo extends GetxController {
         await PeticionesTestigo.crearTestigos(cedula, sede, user, contrasena);
   }
 
-  Future<void> consultarTestigo(String cedula) async {
-    _listarTestigo.value = await PeticionesTestigo.consultarTestigos(cedula);
+  Future<void> listarTestigo() async {
+    _listarTestigo.value = await PeticionesTestigo.listarTestigos();
+  }
+
+  Future<void> consultarTestigo(String search) async {
+    _listarTestigo.value = await PeticionesTestigo.consultarTestigos(search);
   }
 
   Future<void> validarTestigo(String user, String contrasena) async {

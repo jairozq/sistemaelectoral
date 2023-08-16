@@ -28,12 +28,12 @@ class _AddTestigosState extends State<AddTestigos> {
               return Column(children: [
                 Container(
                   alignment: Alignment.topCenter,
-                  margin: const EdgeInsets.only(top: 5, bottom: 45),
+                  margin: const EdgeInsets.only(top: 10, bottom: 45),
                   child: Text(
                     "Ingrese los datos del testigo",
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: MediaQuery.of(context).size.height * 0.04),
+                        fontSize: MediaQuery.of(context).size.height * 0.035),
                   ),
                 ),
                 Wrap(
@@ -145,7 +145,7 @@ class _AddTestigosState extends State<AddTestigos> {
                   const SizedBox(width: 20),
                   TextButton(
                     onPressed: () {
-                      Get.toNamed("/lib/ui/app.dart");
+                      Get.toNamed("/homePageAdmin");
                     },
                     child: const Text(
                       'Volver',

@@ -90,7 +90,6 @@ class _ListSedesState extends State<ListSedes> {
                       "No hay resultados de sedes",
                       style: TextStyle(
                           color: Colors.grey,
-                          fontFamily: "alkreg",
                           fontSize: MediaQuery.of(context).size.width * 0.075),
                     ))
                 : Expanded(
@@ -100,7 +99,7 @@ class _ListSedesState extends State<ListSedes> {
                         return Container(
                           alignment: AlignmentDirectional.center,
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.4,
+                          height: MediaQuery.of(context).size.height * 0.15,
                           child: Column(
                             children: [
                               Card(
@@ -111,11 +110,11 @@ class _ListSedesState extends State<ListSedes> {
                                         Text(
                                           controls.listaSede![index].nombre,
                                           style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.05,
-                                              fontFamily: 'alkbold'),
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.05,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -124,11 +123,11 @@ class _ListSedesState extends State<ListSedes> {
                                         Text(
                                           controls.listaSede![index].direccion,
                                           style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.04,
-                                              fontFamily: 'alkreg'),
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.04,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -137,11 +136,11 @@ class _ListSedesState extends State<ListSedes> {
                                         Text(
                                           "Número de mesas: ${controls.listaSede![index].mesas}",
                                           style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.04,
-                                              fontFamily: 'alkreg'),
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.04,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -151,7 +150,7 @@ class _ListSedesState extends State<ListSedes> {
                                             child: FilledButton(
                                               onPressed: () {
                                                 Get.snackbar('Mesas',
-                                                    'Ya se encuentra creadas las mesas en ${controls.listaSede![index].nombre}',
+                                                    'Ya se encuentran creadas las mesas en ${controls.listaSede![index].nombre}',
                                                     duration: const Duration(
                                                         seconds: 3),
                                                     icon:
@@ -201,7 +200,7 @@ class _ListSedesState extends State<ListSedes> {
                                                                   .listaMensajes![
                                                                       0]
                                                                   .mensaje ==
-                                                              'Mesas Registradas'
+                                                              'La mesa ha sido adicionada'
                                                           ? Colors.green
                                                           : Colors.red);
                                                 });

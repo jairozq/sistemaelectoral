@@ -1,4 +1,4 @@
-import 'package:sistemaelectoral/domain/controller/controllere14.dart';
+import 'package:sistemaelectoral/domain/controller/controllerMesa.dart';
 import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
 import 'package:sistemaelectoral/ui/content/admin/homePage.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +20,11 @@ class _ListE14State extends State<ListE14> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController search = TextEditingController();
-    ControlE14 controle = Get.put(ControlE14());
+    ControlMesa controlm = Get.put(ControlMesa());
 
     if (idex != 1) {
       actualizar();
-      controle.listarE14().then(
+      controlm.listraMesaEC().then(
         (value) {
           Navigator.push(
             context,
@@ -37,138 +36,233 @@ class _ListE14State extends State<ListE14> {
       );
     }
 
-    return RefreshIndicator(
-      triggerMode: RefreshIndicatorTriggerMode.onEdge,
-      edgeOffset: 20,
-      displacement: MediaQuery.of(context).size.height * 0.1,
-      strokeWidth: 5,
-      color: Colors.white,
-      backgroundColor: Colors.grey,
-      onRefresh: () async {
-        actualizar();
-        controle.listarE14().then((value) => Get.toNamed("/homePageAdmin"));
-      },
-      child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 2, bottom: 10),
-              alignment: Alignment.topCenter,
-              width: MediaQuery.of(context).size.width * 0.9,
-              height: MediaQuery.of(context).size.height * 0.05,
-              child: TextField(
-                controller: search,
-                maxLines: 1,
-                style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.height * 0.02),
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.search_rounded),
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.058,
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.058,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: OutlinedButton(
                     onPressed: () {
-                      controle.consultarE14(search.text).then(
-                            (value) => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const HomePage(),
-                              ),
+                      controlm.listraMesaEC().then(
+                        (value) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const HomePage(),
                             ),
                           );
+                        },
+                      );
                     },
-                  ),
-                  fillColor: Colors.grey.shade100,
-                  filled: true,
-                  hintText: 'Buscar...',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-            ),
-            controle.listaE14!.isEmpty
-                ? Container(
-                    alignment: Alignment.center,
                     child: Text(
-                      "No hay resultados de Mesas",
+                      "E14 Cargados",
                       style: TextStyle(
-                          color: Colors.grey,
-                          fontFamily: "alkreg",
-                          fontSize: MediaQuery.of(context).size.width * 0.075),
-                    ))
-                : Expanded(
-                    child: ListView.builder(
-                      itemCount: controle.listaE14!.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          alignment: AlignmentDirectional.center,
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.4,
-                          child: Column(
-                            children: [
-                              Card(
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(controle.listaE14![index].sede,
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05,
-                                                fontFamily: 'alkbold')),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          controle.listaE14![index].mesa,
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.04,
-                                              fontFamily: 'alkreg'),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          controle.listaE14![index].testigo,
-                                          style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.035,
-                                              fontFamily: 'alkreg'),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        controle.listaE14![index].imagen.isEmpty
-                                            ? FilledButton(
-                                                onPressed: () {},
-                                                child: const Text("Por subir"))
-                                            : FilledButton(
-                                                onPressed: () {},
-                                                child: const Text("Ver E14"))
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                          fontSize: MediaQuery.of(context).size.height * 0.025),
                     ),
                   ),
-          ],
-        ),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.058,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      controlm.listraMesaEP().then(
+                        (value) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const HomePage(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Text(
+                      "E14 Por Cargar",
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.height * 0.025),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          controlm.listaMesa!.isEmpty
+              ? Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "No hay datos cargados aún",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: MediaQuery.of(context).size.width * 0.06),
+                  ),
+                )
+              : Expanded(
+                  child: ListView.builder(
+                    itemCount: controlm.listaMesa!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        alignment: AlignmentDirectional.center,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        child: Column(
+                          children: [
+                            Card(
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.75,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.03,
+                                        child: Text(
+                                          controlm.listaMesa![index].sede,
+                                          style: TextStyle(
+                                            color: controlm.listaMesa![index]
+                                                        .estadoe14 ==
+                                                    'CREADO'
+                                                ? Colors.green
+                                                : Colors.red,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.045,
+                                          ),
+                                        ),
+                                      ),
+                                      controlm.listaMesa![index].estadoe14 ==
+                                              'PENDIENTE'
+                                          ? Container(
+                                              child: const Text(
+                                                "PENDIENTE",
+                                                style: TextStyle(
+                                                  color: Colors.red,
+                                                ),
+                                              ),
+                                            )
+                                          : Container(
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  /*controlm
+                                                        .cancelarTickets(
+                                                            controlt
+                                                                .listarTickets![
+                                                                    index]
+                                                                .ticketId
+                                                                .toString())
+                                                        .then((value) {
+                                                      Get.snackbar(
+                                                          "Ticket",
+                                                          controlt
+                                                              .listaMensajes![0]
+                                                              .mensaje,
+                                                          duration:
+                                                              const Duration(
+                                                                  seconds: 3),
+                                                          icon: const Icon(
+                                                              Icons.info),
+                                                          shouldIconPulse: true,
+                                                          backgroundColor: controlt
+                                                                      .listaMensajes![
+                                                                          0]
+                                                                      .mensaje ==
+                                                                  'Ticket Cancelado'
+                                                              ? Colors.green
+                                                              : Colors.red);
+                                                    });
+                                                    controlt
+                                                        .listTicketsVig(
+                                                            dato.toString())
+                                                        .then((value) {
+                                                      Navigator.pushReplacement(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                const HomePage(),
+                                                          ));
+                                                    });
+                                                  */
+                                                },
+                                                child: Text(
+                                                  "VER",
+                                                  style: TextStyle(
+                                                    color: Colors.green,
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.035,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.7,
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  controlm
+                                                      .listaMesa![index].numero,
+                                                  style: TextStyle(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.035,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            /*Row(
+                                              children: [
+                                                Text(
+                                                  "${controlm.lista![index].fechaInicio}",
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.035,
+                                                      fontFamily: 'alkreg'),
+                                                ),
+                                              ],
+                                            ),*/
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+        ],
       ),
     );
   }

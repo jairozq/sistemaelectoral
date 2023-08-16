@@ -20,10 +20,18 @@ class PeticionesTestigo {
     return compute(convertirAlistaMesaje, response.body);
   }
 
-  static Future<List<Testigo>> consultarTestigos(String cedula) async {
+  static Future<List<Testigo>> listarTestigos() async {
     var url = Uri.parse(
-        "https://sistemaelectoral.codersdevs.com.co/php/add_testigo.php");
-    final response = await http.post(url, body: {'cedula': cedula});
+        "https://sistemaelectoral.codersdevs.com.co/php/select_testigo.php");
+    final response = await http.get(url);
+
+    return compute(convertirAlistaRespuesta, response.body);
+  }
+
+  static Future<List<Testigo>> consultarTestigos(String search) async {
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/consultar_testigo.php");
+    final response = await http.post(url, body: {'search': search});
 
     return compute(convertirAlistaRespuesta, response.body);
   }

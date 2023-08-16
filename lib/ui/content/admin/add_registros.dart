@@ -1,11 +1,12 @@
+import 'package:sistemaelectoral/domain/controller/controllerTestigo.dart';
 // import 'package:sistemaelectoral/domain/controller/controllerMesa.dart';
-// import 'package:sistemaelectoral/domain/controller/controllerTestigo.dart';
 import 'package:sistemaelectoral/domain/controller/controllerSede.dart';
 import 'package:sistemaelectoral/ui/content/admin/add_testigos.dart';
 import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
 import 'package:sistemaelectoral/ui/content/admin/add_sedes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sistemaelectoral/ui/content/admin/list_testigos.dart';
 
 class AddResgitros extends StatefulWidget {
   const AddResgitros({super.key});
@@ -23,9 +24,9 @@ class _AddResgitrosState extends State<AddResgitros> {
 
   @override
   Widget build(BuildContext context) {
+    ControlTestigo controlt = Get.put(ControlTestigo());
     // ControlMesa controlm = Get.put(ControlMesa());
     ControlSede controls = Get.put(ControlSede());
-    // ControlTestigo controlt = Get.put(ControlTestigo());
     actualizar();
 
     return Center(
@@ -81,13 +82,31 @@ class _AddResgitrosState extends State<AddResgitros> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => AddTestigos(),
+                  builder: (BuildContext context) => const AddTestigos(),
                 ),
               );
               // );
             },
             child: Text(
               "Registrar Testigo",
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.height * 0.05,
+              ),
+            ),
+          ),
+          OutlinedButton(
+            onPressed: () {
+              controlt.listarTestigo().then(
+                    (value) => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => const ListTestigos(),
+                      ),
+                    ),
+                  );
+            },
+            child: Text(
+              "Lista De Testigos",
               style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.05,
               ),

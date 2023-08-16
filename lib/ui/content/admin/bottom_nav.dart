@@ -18,7 +18,7 @@ class _Bnavigator extends State<Bnavigator> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.grey,
+        selectedItemColor: Colors.black,
         // selectedLabelStyle: const TextStyle(fontFamily: "alksemb"),
         selectedFontSize: MediaQuery.of(context).size.width * 0.04,
         // unselectedLabelStyle: const TextStyle(fontFamily: "alksemb"),

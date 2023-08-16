@@ -129,9 +129,12 @@ class _ListMesasState extends State<ListMesas> {
                                     ),
                                     Row(
                                       children: [
-                                        Text(
-                                          controlm.listaMesa![index].estadoe14,
-                                          style: TextStyle(
+                                        TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            controlm
+                                                .listaMesa![index].estadoe14,
+                                            style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -140,7 +143,9 @@ class _ListMesasState extends State<ListMesas> {
                                                           .estadoe14 ==
                                                       "PENDIENTE"
                                                   ? Colors.red
-                                                  : Colors.green),
+                                                  : Colors.green,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
