@@ -1,6 +1,7 @@
-import 'package:sistemaelectoral/domain/controller/controllerMesa.dart';
+// import 'package:sistemaelectoral/domain/controller/controllerMesa.dart';
+// import 'package:sistemaelectoral/domain/controller/controllerTestigo.dart';
 import 'package:sistemaelectoral/domain/controller/controllerSede.dart';
-import 'package:sistemaelectoral/domain/controller/controllerTestigo.dart';
+import 'package:sistemaelectoral/ui/content/admin/add_testigos.dart';
 import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
 import 'package:sistemaelectoral/ui/content/admin/add_sedes.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,9 @@ class _AddResgitrosState extends State<AddResgitros> {
 
   @override
   Widget build(BuildContext context) {
-    ControlMesa controlm = Get.put(ControlMesa());
+    // ControlMesa controlm = Get.put(ControlMesa());
     ControlSede controls = Get.put(ControlSede());
-    ControlTestigo controlt = Get.put(ControlTestigo());
+    // ControlTestigo controlt = Get.put(ControlTestigo());
     actualizar();
 
     return Center(
@@ -43,8 +44,8 @@ class _AddResgitrosState extends State<AddResgitros> {
             child: Text(
               "Registrar Sede",
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.05,
-                  fontFamily: 'alkbold'),
+                fontSize: MediaQuery.of(context).size.height * 0.05,
+              ),
             ),
           ),
           SizedBox(
@@ -62,10 +63,10 @@ class _AddResgitrosState extends State<AddResgitros> {
                   );
             },
             child: Text(
-              "Registrar Mesa",
+              "Ver Mesas",
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.05,
-                  fontFamily: 'alkbold'),
+                fontSize: MediaQuery.of(context).size.height * 0.05,
+              ),
             ),
           ),
           SizedBox(
@@ -80,7 +81,7 @@ class _AddResgitrosState extends State<AddResgitros> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => AddSedes(),
+                  builder: (BuildContext context) => AddTestigos(),
                 ),
               );
               // );
@@ -88,8 +89,8 @@ class _AddResgitrosState extends State<AddResgitros> {
             child: Text(
               "Registrar Testigo",
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.05,
-                  fontFamily: 'alkbold'),
+                fontSize: MediaQuery.of(context).size.height * 0.05,
+              ),
             ),
           ),
         ],

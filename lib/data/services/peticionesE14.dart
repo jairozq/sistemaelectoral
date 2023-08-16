@@ -9,12 +9,8 @@ class PeticionesE14 {
       String sede, String mesa, String testigo, String? imagen) async {
     var url =
         Uri.parse("https://sistemaelectoral.codersdevs.com.co/php/add_e14.php");
-    final response = await http.post(url, body: {
-      'sede': sede,
-      'mesa': mesa,
-      'testigo': testigo,
-      'imagen': imagen
-    });
+    final response = await http
+        .post(url, body: {'sede': sede, 'mesa': mesa, 'testigo': testigo});
 
     return compute(convertirAlistaMesaje, response.body);
   }

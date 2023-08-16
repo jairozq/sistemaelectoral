@@ -5,19 +5,22 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PeticionesMesa {
-  static Future<List<Mensajes>> crearMesa(String sede, String numero) async {
+  static Future<List<Mensajes>> crearMesas(String numero, String sede) async {
     var url = Uri.parse(
         "https://sistemaelectoral.codersdevs.com.co/php/add_mesa.php");
-    final response =
-        await http.post(url, body: {'sede': sede, 'numero': numero});
+    final response = await http.post(url,
+        body: {'numero': numero, 'sede': sede, 'estadoe14': 'PENDIENTE'});
 
     return compute(convertirAlistaMesaje, response.body);
   }
 
   static Future<List<Mesa>> filtraMesas(String sede) async {
+    print("peticion sede: $sede");
     var url = Uri.parse(
         "https://sistemaelectoral.codersdevs.com.co/php/filtrar_mesas.php");
     final response = await http.post(url, body: {'sede': sede});
+    print(response.statusCode);
+    print(response.body);
 
     return compute(convertirAlistaRespuesta, response.body);
   }

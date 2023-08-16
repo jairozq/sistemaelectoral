@@ -7,6 +7,12 @@ class ControlTestigo extends GetxController {
   final Rxn<List<Testigo>> _listarTestigo = Rxn<List<Testigo>>([]);
   final Rxn<List<Mensajes>> _mensajes = Rxn<List<Mensajes>>([]);
 
+  Future<void> crearTestigo(
+      String cedula, String sede, String user, String contrasena) async {
+    _mensajes.value =
+        await PeticionesTestigo.crearTestigos(cedula, sede, user, contrasena);
+  }
+
   Future<void> consultarTestigo(String cedula) async {
     _listarTestigo.value = await PeticionesTestigo.consultarTestigos(cedula);
   }

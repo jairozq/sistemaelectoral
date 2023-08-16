@@ -1,9 +1,17 @@
 import 'package:sistemaelectoral/data/services/peticionesMesa.dart';
 import 'package:sistemaelectoral/domain/models/mesa.dart';
 import 'package:get/get.dart';
+import 'package:sistemaelectoral/domain/models/utiles.dart';
 
 class ControlMesa extends GetxController {
   final Rxn<List<Mesa>> _listarMesa = Rxn<List<Mesa>>([]);
+  final Rxn<List<Mensajes>> _mensajes = Rxn<List<Mensajes>>([]);
+
+  Future<void> crearMesa(String mesas, String sede) async {
+    for (int i = 1; i <= int.parse(mesas); i++) {
+      _mensajes.value = await PeticionesMesa.crearMesas(i.toString(), sede);
+    }
+  }
 
   Future<void> consultarMesa(String cedula) async {
     _listarMesa.value = await PeticionesMesa.consultarMesas(cedula);
@@ -18,4 +26,5 @@ class ControlMesa extends GetxController {
   }
 
   List<Mesa>? get listaMesa => _listarMesa.value;
+  List<Mensajes>? get listaMensajes => _mensajes.value;
 }

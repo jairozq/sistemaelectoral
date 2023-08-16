@@ -9,8 +9,21 @@ class PeticionesSedes {
       String nombre, String direccion, String mesas) async {
     var url = Uri.parse(
         "https://sistemaelectoral.codersdevs.com.co/php/add_sede.php");
-    final response = await http.post(url,
-        body: {'nombre': nombre, 'direccion': direccion, 'mesas': mesas});
+    final response = await http.post(url, body: {
+      'nombre': nombre,
+      'direccion': direccion,
+      'mesas': mesas,
+      'estadomesas': 'PENDIENTES',
+    });
+
+    return compute(convertirAlistaMesaje, response.body);
+  }
+
+  static Future<List<Mensajes>> actualizarSedesEstado(String sede) async {
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/update_sede.php");
+    final response =
+        await http.post(url, body: {'sede': sede, 'estadomesas': 'CREADAS'});
 
     return compute(convertirAlistaMesaje, response.body);
   }

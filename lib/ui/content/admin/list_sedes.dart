@@ -1,3 +1,4 @@
+import 'package:sistemaelectoral/domain/controller/controllerMesa.dart';
 import 'package:sistemaelectoral/domain/controller/controllerSede.dart';
 import 'package:sistemaelectoral/ui/content/admin/homePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +30,7 @@ class _ListSedesState extends State<ListSedes> {
   Widget build(BuildContext context) {
     TextEditingController search = TextEditingController();
     ControlSede controls = Get.put(ControlSede());
+    ControlMesa controlm = Get.put(ControlMesa());
     actualizar();
 
     return RefreshIndicator(
@@ -143,6 +145,85 @@ class _ListSedesState extends State<ListSedes> {
                                         ),
                                       ],
                                     ),
+                                    controls.listaSede![index].estadomesas ==
+                                            "CREADAS"
+                                        ? Container(
+                                            child: FilledButton(
+                                              onPressed: () {
+                                                Get.snackbar('Mesas',
+                                                    'Ya se encuentra creadas las mesas en ${controls.listaSede![index].nombre}',
+                                                    duration: const Duration(
+                                                        seconds: 3),
+                                                    icon:
+                                                        const Icon(Icons.info),
+                                                    shouldIconPulse: true,
+                                                    backgroundColor:
+                                                        Colors.yellow);
+                                              },
+                                              child: Text(
+                                                "Crear Mesas",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.03,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            child: FilledButton(
+                                              onPressed: () {
+                                                controls.actualizarSedeEstado(
+                                                    controls.listaSede![index]
+                                                        .direccion);
+                                                controlm
+                                                    .crearMesa(
+                                                        controls
+                                                            .listaSede![index]
+                                                            .mesas,
+                                                        controls
+                                                            .listaSede![index]
+                                                            .direccion)
+                                                    .then((value) {
+                                                  Get.snackbar(
+                                                      'Mesas',
+                                                      controlm.listaMensajes![0]
+                                                          .mensaje,
+                                                      duration: const Duration(
+                                                          seconds: 3),
+                                                      icon: const Icon(
+                                                          Icons.info),
+                                                      shouldIconPulse: true,
+                                                      backgroundColor: controlm
+                                                                  .listaMensajes![
+                                                                      0]
+                                                                  .mensaje ==
+                                                              'Mesas Registradas'
+                                                          ? Colors.green
+                                                          : Colors.red);
+                                                });
+                                                controls
+                                                    .listarSedeGeneral()
+                                                    .then((value) =>
+                                                        Get.toNamed(
+                                                            "/homePage"));
+                                              },
+                                              child: Text(
+                                                "Crear Mesas",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.03,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                   ],
                                 ),
                               ),

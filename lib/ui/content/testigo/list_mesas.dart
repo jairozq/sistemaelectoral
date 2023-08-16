@@ -119,24 +119,28 @@ class _ListMesasState extends State<ListMesas> {
                                         Text(
                                           controlm.listaMesa![index].numero,
                                           style: TextStyle(
-                                              fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.035,
-                                              fontFamily: 'alkreg'),
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.035,
+                                          ),
                                         ),
                                       ],
                                     ),
                                     Row(
                                       children: [
                                         Text(
-                                          controlm.listaMesa![index].numero,
+                                          controlm.listaMesa![index].estadoe14,
                                           style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size
                                                       .width *
                                                   0.035,
-                                              fontFamily: 'alkreg'),
+                                              color: controlm.listaMesa![index]
+                                                          .estadoe14 ==
+                                                      "PENDIENTE"
+                                                  ? Colors.red
+                                                  : Colors.green),
                                         ),
                                       ],
                                     ),
