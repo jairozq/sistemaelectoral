@@ -15,6 +15,11 @@ class ControlSede extends GetxController {
     _listarSede.value = await PeticionesSedes.listaSedesGeneral();
   }
 
+  Future<void> crearSede(String nombre, String direccion, String mesas) async {
+    _mensajes.value =
+        await PeticionesSedes.crearSedes(nombre, direccion, mesas);
+  }
+
   Future<void> actualizarSedeEstado(String sede) async {
     _mensajes.value = await PeticionesSedes.actualizarSedesEstado(sede);
   }

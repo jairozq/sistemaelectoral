@@ -36,6 +36,20 @@ class PeticionesTestigo {
     return compute(convertirAlistaRespuesta, response.body);
   }
 
+  static Future<List<Mensajes>> modificarEstadoTestigos(
+      String cedula, String estado) async {
+    print("$cedula   $estado");
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/update_estado_testigo.php");
+    final response =
+        await http.post(url, body: {'cedula': cedula, 'estado': estado});
+
+    print(response.body);
+    print(response.statusCode);
+
+    return compute(convertirAlistaMesaje, response.body);
+  }
+
   static Future<List<Testigo>> validarTestigos(
       String user, String contrasena) async {
     var url =

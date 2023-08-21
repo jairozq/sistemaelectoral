@@ -47,10 +47,10 @@ class _LoginState extends State<Login> {
                           bottom: MediaQuery.of(context).size.height * 0.04),
                       height: MediaQuery.of(context).size.height * 0.2,
                       width: MediaQuery.of(context).size.width * 0.5,
-                      /*child: Image.asset(
-                        "assets/images/logo.png",
+                      child: Image.asset(
+                        "assets/img/logo.png",
                         fit: BoxFit.cover,
-                      ),*/
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(
@@ -99,51 +99,60 @@ class _LoginState extends State<Login> {
                             height: 40,
                           ),
                           FilledButton(
-                              onPressed: () {
-                                controlt
-                                    .validarTestigo(user.text, pass.text)
-                                    .then(
-                                  (value) {
-                                    if (controlt.listaTestigo!.isEmpty) {
-                                      Get.snackbar(
-                                          'Usuarios', 'Usuario no Encontrado',
-                                          duration: const Duration(seconds: 3),
-                                          icon: const Icon(Icons.info),
-                                          shouldIconPulse: true,
-                                          backgroundColor: Colors.red);
+                            onPressed: () {
+                              controlt
+                                  .validarTestigo(user.text, pass.text)
+                                  .then(
+                                (value) {
+                                  if (controlt.listaTestigo!.isEmpty) {
+                                    Get.snackbar(
+                                        'Usuarios', 'Usuario no Encontrado',
+                                        duration: const Duration(seconds: 3),
+                                        icon: const Icon(Icons.info),
+                                        shouldIconPulse: true,
+                                        backgroundColor: Colors.red);
+                                  } else {
+                                    idex = 0;
+                                    guardaId(controlt.listaTestigo![0].cedula,
+                                        controlt.listaTestigo![0].sede);
+                                    if (controlt.listaTestigo![0].tipocuenta ==
+                                        "Admin") {
+                                      controls.listarSedeGeneral().then(
+                                            (value) =>
+                                                Get.toNamed("/homePageAdmin"),
+                                          );
                                     } else {
-                                      idex = 0;
-                                      guardaId(controlt.listaTestigo![0].cedula,
-                                          controlt.listaTestigo![0].sede);
-                                      if (controlt
-                                              .listaTestigo![0].tipocuenta ==
-                                          "Admin") {
-                                        controls.listarSedeGeneral().then(
-                                              (value) =>
-                                                  Get.toNamed("/homePageAdmin"),
-                                            );
-                                      } else {
-                                        print(controlt.listaTestigo![0].sede);
+                                      if (controlt.listaTestigo![0].estado ==
+                                          "Activo") {
                                         controlm.FiltrarMesa(
                                                 controlt.listaTestigo![0].sede)
                                             .then(
                                           (value) =>
                                               Get.toNamed("/homePageTestigo"),
                                         );
+                                      } else {
+                                        Get.snackbar('Usuarios',
+                                            'Usuario no se encuentra activo',
+                                            duration:
+                                                const Duration(seconds: 3),
+                                            icon: const Icon(Icons.info),
+                                            shouldIconPulse: true,
+                                            backgroundColor: Colors.red);
                                       }
                                     }
-                                  },
-                                );
-                              },
-                              child: Text(
-                                "     Entrar     ",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize:
-                                        MediaQuery.of(context).size.height *
-                                            0.035,
-                                    fontFamily: 'alkbold'),
-                              )),
+                                  }
+                                },
+                              );
+                            },
+                            child: Text(
+                              "     Entrar     ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.035,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

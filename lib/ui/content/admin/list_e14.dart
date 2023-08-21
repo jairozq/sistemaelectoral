@@ -128,7 +128,7 @@ class _ListE14State extends State<ListE14> {
                                             MediaQuery.of(context).size.height *
                                                 0.03,
                                         child: Text(
-                                          controlm.listaMesa![index].sede,
+                                          "Direccion del Puesto: ${controlm.listaMesa![index].sede}",
                                           style: TextStyle(
                                             color: controlm.listaMesa![index]
                                                         .estadoe14 ==
@@ -222,8 +222,7 @@ class _ListE14State extends State<ListE14> {
                                             Row(
                                               children: [
                                                 Text(
-                                                  controlm
-                                                      .listaMesa![index].numero,
+                                                  'Mesa: ${controlm.listaMesa![index].numero}',
                                                   style: TextStyle(
                                                     fontSize:
                                                         MediaQuery.of(context)

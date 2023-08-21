@@ -108,7 +108,7 @@ class _ListSedesState extends State<ListSedes> {
                                     Row(
                                       children: [
                                         Text(
-                                          controls.listaSede![index].nombre,
+                                          "Nombre: ${controls.listaSede![index].nombre}",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context)
                                                     .size
@@ -121,7 +121,7 @@ class _ListSedesState extends State<ListSedes> {
                                     Row(
                                       children: [
                                         Text(
-                                          controls.listaSede![index].direccion,
+                                          "Direccion: ${controls.listaSede![index].direccion}",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context)
                                                     .size

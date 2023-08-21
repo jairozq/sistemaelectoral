@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PeticionesE14 {
-  static Future<List<Mensajes>> crearE14(
-      String sede, String mesa, String testigo, String? imagen) async {
+  static Future<List<Mensajes>> crearE14(String sede, String mesa,
+      String testigo, String? imagen, String votos) async {
     var url =
         Uri.parse("https://sistemaelectoral.codersdevs.com.co/php/add_e14.php");
     final response = await http

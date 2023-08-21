@@ -94,7 +94,7 @@ class _ListTestigosState extends State<ListTestigos> {
                                     Row(
                                       children: [
                                         Text(
-                                          controlt.listaTestigo![index].user,
+                                          "Usuario: ${controlt.listaTestigo![index].user}",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context)
                                                     .size
@@ -107,7 +107,7 @@ class _ListTestigosState extends State<ListTestigos> {
                                     Row(
                                       children: [
                                         Text(
-                                          controlt.listaTestigo![index].cedula,
+                                          "Cedula: ${controlt.listaTestigo![index].cedula}",
                                           style: TextStyle(
                                             fontSize: MediaQuery.of(context)
                                                     .size
@@ -132,33 +132,99 @@ class _ListTestigosState extends State<ListTestigos> {
                                     ),
                                     controlt.listaTestigo![index].estado ==
                                             "Activo"
-                                        ? Container(
-                                            child: TextButton(
-                                              onPressed: () {},
-                                              child: Text(
-                                                "Activo",
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.04,
-                                                    color: Colors.green),
+                                        ? TextButton(
+                                            onPressed: () {
+                                              controlt
+                                                  .modificarEstadoTestigo(
+                                                      controlt
+                                                          .listaTestigo![index]
+                                                          .cedula,
+                                                      "Inactivo")
+                                                  .then(
+                                                    (value) {},
+                                                  );
+                                              Get.snackbar(
+                                                'Usuarios',
+                                                controlt.mensaje![0].mensaje,
+                                                duration:
+                                                    const Duration(seconds: 3),
+                                                icon: const Icon(Icons.info),
+                                                shouldIconPulse: true,
+                                                backgroundColor: controlt
+                                                            .mensaje![0]
+                                                            .mensaje ==
+                                                        'Estado del usuario modificado'
+                                                    ? Colors.green
+                                                    : Colors.red,
+                                              );
+                                              controlt.listarTestigo().then(
+                                                (value) {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          const ListTestigos(),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Text(
+                                              "Activo",
+                                              style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.04,
+                                                color: Colors.green,
                                               ),
                                             ),
                                           )
-                                        : Container(
-                                            child: TextButton(
-                                              onPressed: () {},
-                                              child: Text(
-                                                "Inactivo",
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.04,
-                                                    color: Colors.red),
+                                        : TextButton(
+                                            onPressed: () {
+                                              controlt
+                                                  .modificarEstadoTestigo(
+                                                      controlt
+                                                          .listaTestigo![index]
+                                                          .cedula,
+                                                      "Activo")
+                                                  .then(
+                                                    (value) {},
+                                                  );
+                                              Get.snackbar('Usuarios',
+                                                  controlt.mensaje![0].mensaje,
+                                                  duration: const Duration(
+                                                      seconds: 3),
+                                                  icon: const Icon(Icons.info),
+                                                  shouldIconPulse: true,
+                                                  backgroundColor: controlt
+                                                              .mensaje![0]
+                                                              .mensaje ==
+                                                          'Estado del usuario modificado'
+                                                      ? Colors.green
+                                                      : Colors.red);
+                                              controlt.listarTestigo().then(
+                                                (value) {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          const ListTestigos(),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            child: Text(
+                                              "Inactivo",
+                                              style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.04,
+                                                color: Colors.red,
                                               ),
                                             ),
                                           ),
@@ -172,6 +238,14 @@ class _ListTestigosState extends State<ListTestigos> {
                     ),
                   ),
           ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.toNamed("/homePageAdmin");
+          },
+          tooltip: 'Volver',
+          child: const Icon(Icons.arrow_back_rounded),
         ),
       ),
     );

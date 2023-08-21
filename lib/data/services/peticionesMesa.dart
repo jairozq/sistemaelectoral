@@ -22,6 +22,14 @@ class PeticionesMesa {
     return compute(convertirAlistaRespuesta, response.body);
   }
 
+  static Future<List<Mesa>> consultarMesasGeneral(String search) async {
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/consultar_mesas_general.php");
+    final response = await http.post(url, body: {'search': search});
+
+    return compute(convertirAlistaRespuesta, response.body);
+  }
+
   static Future<List<Mesa>> consultarMesas(String cedula) async {
     var url = Uri.parse(
         "https://sistemaelectoral.codersdevs.com.co/php/consultar_mesas.php");
@@ -30,12 +38,13 @@ class PeticionesMesa {
     return compute(convertirAlistaRespuesta, response.body);
   }
 
-  /*static Future<List<Mesa>> listaMesa() async {
-    var url = Uri.parse("");
+  static Future<List<Mesa>> listaMesas() async {
+    var url = Uri.parse(
+        "https://sistemaelectoral.codersdevs.com.co/php/listar_mesas.php");
     final response = await http.get(url);
 
     return compute(convertirAlistaRespuesta, response.body);
-  }*/
+  }
 
   static Future<List<Mesa>> listaMesaEC() async {
     var url = Uri.parse(

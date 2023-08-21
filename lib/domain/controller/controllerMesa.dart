@@ -17,13 +17,17 @@ class ControlMesa extends GetxController {
     _listarMesa.value = await PeticionesMesa.consultarMesas(cedula);
   }
 
+  Future<void> consultarMesaGeneral(String search) async {
+    _listarMesa.value = await PeticionesMesa.consultarMesasGeneral(search);
+  }
+
   Future<void> FiltrarMesa(String sede) async {
     _listarMesa.value = await PeticionesMesa.filtraMesas(sede);
   }
 
-  /*Future<void> listraMesa() async {
-    _listarMesa.value = await PeticionesMesa.listaMesa();
-  }*/
+  Future<void> listraMesa() async {
+    _listarMesa.value = await PeticionesMesa.listaMesas();
+  }
 
   Future<void> listraMesaEC() async {
     _listarMesa.value = await PeticionesMesa.listaMesaEC();
