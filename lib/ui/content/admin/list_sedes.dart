@@ -149,6 +149,7 @@ class _ListSedesState extends State<ListSedes> {
                                         ? Container(
                                             child: FilledButton(
                                               onPressed: () {
+                                                print("boton creadas");
                                                 Get.snackbar('Mesas',
                                                     'Ya se encuentran creadas las mesas en ${controls.listaSede![index].nombre}',
                                                     duration: const Duration(
@@ -159,25 +160,37 @@ class _ListSedesState extends State<ListSedes> {
                                                     backgroundColor:
                                                         Colors.yellow);
                                               },
-                                              child: Text(
-                                                "Crear Mesas",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          0.03,
-                                                ),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    "Crear Mesas",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.03,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "creadas",
+                                                    style: TextStyle(
+                                                      color: Colors.green[900],
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.015,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           )
                                         : Container(
                                             child: FilledButton(
                                               onPressed: () {
-                                                controls.actualizarSedeEstado(
-                                                    controls.listaSede![index]
-                                                        .direccion);
                                                 controlm
                                                     .crearMesa(
                                                         controls
@@ -186,43 +199,122 @@ class _ListSedesState extends State<ListSedes> {
                                                         controls
                                                             .listaSede![index]
                                                             .direccion)
-                                                    .then((value) {
-                                                  Get.snackbar(
-                                                      'Mesas',
-                                                      controlm.listaMensajes![0]
-                                                          .mensaje,
-                                                      duration: const Duration(
-                                                          seconds: 3),
-                                                      icon: const Icon(
-                                                          Icons.info),
-                                                      shouldIconPulse: true,
-                                                      backgroundColor: controlm
-                                                                  .listaMensajes![
-                                                                      0]
-                                                                  .mensaje ==
-                                                              'La mesa ha sido adicionada'
-                                                          ? Colors.green
-                                                          : Colors.red);
-                                                });
-                                                controls
-                                                    .listarSedeGeneral()
-                                                    .then((value) =>
-                                                        Get.toNamed(
-                                                            "/homePage"));
+                                                    .then(
+                                                  (value) {
+                                                    if (controlm
+                                                            .listaMensajes![0]
+                                                            .mensaje ==
+                                                        "Las mesas han sido adicionadas: ${controls.listaSede![index].mesas}") {
+                                                      controls
+                                                          .actualizarSedeEstado(
+                                                              controls
+                                                                  .listaSede![
+                                                                      index]
+                                                                  .direccion)
+                                                          .then(
+                                                        (value) {
+                                                          Get.snackbar(
+                                                            'Puestos',
+                                                            controls
+                                                                .listaMensajes![
+                                                                    0]
+                                                                .mensaje,
+                                                            duration:
+                                                                const Duration(
+                                                                    seconds: 3),
+                                                            icon: const Icon(
+                                                                Icons.info),
+                                                            shouldIconPulse:
+                                                                true,
+                                                            backgroundColor: controls
+                                                                        .listaMensajes![
+                                                                            0]
+                                                                        .mensaje ==
+                                                                    'Se ha modificado el estado de la sede'
+                                                                ? Colors.green
+                                                                : Colors.red,
+                                                          );
+                                                        },
+                                                      );
+                                                      Get.snackbar(
+                                                        'Mesas',
+                                                        controlm
+                                                            .listaMensajes![0]
+                                                            .mensaje,
+                                                        duration:
+                                                            const Duration(
+                                                                seconds: 3),
+                                                        icon: const Icon(
+                                                            Icons.info),
+                                                        shouldIconPulse: true,
+                                                        backgroundColor: controlm
+                                                                    .listaMensajes![
+                                                                        0]
+                                                                    .mensaje ==
+                                                                'Las mesas han sido adicionadas: ${controls.listaSede![index].mesas}'
+                                                            ? Colors.green
+                                                            : Colors.red,
+                                                      );
+                                                      controls
+                                                          .listarSedeGeneral()
+                                                          .then(
+                                                        (value) {
+                                                          Get.toNamed(
+                                                              "/homePageAdmin");
+                                                        },
+                                                      );
+                                                    } else {
+                                                      Get.snackbar(
+                                                        'Mesas',
+                                                        controlm
+                                                            .listaMensajes![0]
+                                                            .mensaje,
+                                                        duration:
+                                                            const Duration(
+                                                                seconds: 3),
+                                                        icon: const Icon(
+                                                            Icons.info),
+                                                        shouldIconPulse: true,
+                                                        backgroundColor:
+                                                            Colors.red,
+                                                      );
+                                                    }
+                                                  },
+                                                );
                                               },
-                                              child: Text(
-                                                "Crear Mesas",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          0.03,
-                                                ),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    "Crear Mesas",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.03,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "pendientes",
+                                                    style: TextStyle(
+                                                      color: Colors.red[900],
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.015,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.003,
+                                    )
                                   ],
                                 ),
                               ),

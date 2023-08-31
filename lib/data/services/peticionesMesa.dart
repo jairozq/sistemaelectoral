@@ -5,11 +5,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PeticionesMesa {
-  static Future<List<Mensajes>> crearMesas(String numero, String sede) async {
+  static Future<List<Mensajes>> crearMesas(String mesas, String sede) async {
     var url = Uri.parse(
         "https://sistemaelectoral.codersdevs.com.co/php/add_mesa.php");
     final response = await http.post(url,
-        body: {'numero': numero, 'sede': sede, 'estadoe14': 'PENDIENTE'});
+        body: {'mesas': mesas, 'sede': sede, 'estadoe14': 'PENDIENTE'});
 
     return compute(convertirAlistaMesaje, response.body);
   }
@@ -40,7 +40,7 @@ class PeticionesMesa {
 
   static Future<List<Mesa>> listaMesas() async {
     var url = Uri.parse(
-        "https://sistemaelectoral.codersdevs.com.co/php/listar_mesas.php");
+        "https://sistemaelectoral.codersdevs.com.co/php/select_mesas.php");
     final response = await http.get(url);
 
     return compute(convertirAlistaRespuesta, response.body);

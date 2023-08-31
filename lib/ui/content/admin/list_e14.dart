@@ -112,7 +112,7 @@ class _ListE14State extends State<ListE14> {
                       return Container(
                         alignment: AlignmentDirectional.center,
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.15,
+                        height: MediaQuery.of(context).size.height * 0.04,
                         child: Column(
                           children: [
                             Card(

@@ -18,7 +18,11 @@ class _AddTestigosState extends State<AddTestigos> {
     TextEditingController contrasena = TextEditingController();
     ControlTestigo controlt = Get.put(ControlTestigo());
 
-    return Container(
+    return WillPopScope(
+      onWillPop: () async {
+        Get.toNamed("/homePageAdmin");
+        return true;
+      },
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         body: Container(

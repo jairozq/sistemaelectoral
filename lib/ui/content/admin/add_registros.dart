@@ -59,15 +59,12 @@ class _AddResgitrosState extends State<AddResgitros> {
               ),
               OutlinedButton(
                 onPressed: () {
-                  // controlu.consultarUser(cedula).then(
-                  //       (value) =>
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (BuildContext context) => const AddTestigos(),
                     ),
                   );
-                  // );
                 },
                 child: Text(
                   '''Registrar

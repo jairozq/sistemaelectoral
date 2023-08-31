@@ -19,7 +19,7 @@ class App extends StatelessWidget {
         "/login": (context) => const Login(),
         "/homePageAdmin": (context) => const HomePage(),
         "/homePageTestigo": (context) => const HomePageT(),
-        // "/pruebba": (context) => const ListTestigos(),
+        // "/pruebba": (context) => const (),
       },
     );
   }

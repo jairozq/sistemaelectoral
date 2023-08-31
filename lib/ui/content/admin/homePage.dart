@@ -1,8 +1,10 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sistemaelectoral/ui/content/admin/bottom_nav.dart';
 import 'package:sistemaelectoral/ui/content/admin/list_sedes.dart';
 import 'package:sistemaelectoral/ui/content/admin/routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'dart:io';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,6 +24,13 @@ class _HomePageState extends State<HomePage> {
     dato = pref.getString("idG").toString();
   }
 
+  void eliminarDatos() async {
+    SharedPreferences elim = await SharedPreferences.getInstance();
+    setState(() {
+      elim.remove("idG");
+    });
+  }
+
   @override
   void initState() {
     cargarDatos();
@@ -37,30 +46,68 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: myBNB,
-      body: Routes(index: index),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text('Sitema Electoral',
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'alkbold',
-                fontSize: MediaQuery.of(context).size.height * 0.035)),
-        /*actions: [ ****eliminar el id****
-          Container(
-            width: MediaQuery.of(context).size.width * 0.156,
-            child: OutlinedButton.icon(
+    return WillPopScope(
+      onWillPop: () async {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Text("¿Desea salir de la App?"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        OutlinedButton.icon(
+                          onPressed: () => exit(0),
+                          icon: const Icon(Icons.check_rounded),
+                          label: const Text("Sí"),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.1,
+                        ),
+                        OutlinedButton.icon(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.close_rounded),
+                          label: const Text("No"),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+        return false;
+      },
+      child: Scaffold(
+        bottomNavigationBar: myBNB,
+        body: Routes(index: index),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text('Sitema Electoral',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.height * 0.035)),
+          actions: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.156,
+              child: IconButton(
                 onPressed: () {
-                  Get.toNamed("/home");
+                  eliminarDatos();
+                  Get.toNamed("/login");
                 },
-                icon: const Icon(Icons.close_rounded, color: Colors.white),
-                label: const Text('',
-                    style:
-                        TextStyle(color: Colors.black, fontFamily: 'alkbold'))),
-          )
-        ],*/
+                icon: const Icon(Icons.power_settings_new_rounded,
+                    color: Colors.white),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

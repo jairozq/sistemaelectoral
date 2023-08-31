@@ -8,9 +8,7 @@ class ControlMesa extends GetxController {
   final Rxn<List<Mensajes>> _mensajes = Rxn<List<Mensajes>>([]);
 
   Future<void> crearMesa(String mesas, String sede) async {
-    for (int i = 1; i <= int.parse(mesas); i++) {
-      _mensajes.value = await PeticionesMesa.crearMesas(i.toString(), sede);
-    }
+    _mensajes.value = await PeticionesMesa.crearMesas(mesas, sede);
   }
 
   Future<void> consultarMesa(String cedula) async {

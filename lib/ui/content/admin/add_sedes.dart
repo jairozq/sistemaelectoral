@@ -17,7 +17,11 @@ class _AddSedesState extends State<AddSedes> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return WillPopScope(
+      onWillPop: () async {
+        Get.toNamed("/homePageAdmin");
+        return true;
+      },
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         body: Container(
@@ -31,7 +35,8 @@ class _AddSedesState extends State<AddSedes> {
                     alignment: Alignment.topCenter,
                     margin: const EdgeInsets.only(top: 20, bottom: 45),
                     child: Text(
-                      "Ingrese los datos del testigo",
+                      '''Ingrese los datos del puesto
+                de votacion''',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: MediaQuery.of(context).size.height * 0.035),
@@ -49,7 +54,7 @@ class _AddSedesState extends State<AddSedes> {
                           decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
-                            hintText: 'Nombre del puesto de votacion',
+                            hintText: 'Nombre',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -103,18 +108,20 @@ class _AddSedesState extends State<AddSedes> {
                             direccion.text,
                             mesas.text,
                           )
-                              .then((value) {
-                            Get.snackbar(
-                                'Puestos', controls.listaMensajes![0].mensaje,
-                                duration: const Duration(seconds: 3),
-                                icon: const Icon(Icons.info),
-                                shouldIconPulse: true,
-                                backgroundColor:
-                                    controls.listaMensajes![0].mensaje ==
-                                            'Puesto De Votacion Registrada'
-                                        ? Colors.green
-                                        : Colors.red);
-                          });
+                              .then(
+                            (value) {
+                              Get.snackbar(
+                                  'Puestos', controls.listaMensajes![0].mensaje,
+                                  duration: const Duration(seconds: 3),
+                                  icon: const Icon(Icons.info),
+                                  shouldIconPulse: true,
+                                  backgroundColor:
+                                      controls.listaMensajes![0].mensaje ==
+                                              'Puesto De Votacion Registrado'
+                                          ? Colors.green
+                                          : Colors.red);
+                            },
+                          );
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
